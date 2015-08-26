@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+template <class T>
+class MyStack{
+private:
+	vector<T> arr;
+
+public:
+	void push(T const&);
+	void pop();
+	T top() const;
+};
+
+template <class T>
+void MyStack::push(T const& elem){
+	arr.push_back(elem);
+}
+
+template <class T>
+void MyStack::pop(){
+	if(arr.empty()){
+		cout << "Stack is empty" << endl;
+		return;
+	}
+	arr.pop_back();
+}
+
+template <class T>
+T MyStack::pop(){
+	if(arr.empty){
+		cout << "Stack is empty" << endl;
+	}
+	return arr.back();
+}
+
+int main(){
+	MyStack<int> myStack;
+	myStack.push(7);
+	cout << myStack.top() << endl;
+	return 0;
+}
