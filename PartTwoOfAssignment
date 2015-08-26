@@ -1,0 +1,59 @@
+#include<iostream>
+using namespace std;
+
+// Points covered:
+// Types of inheritances
+// Multilevel inheritances
+// Multiple inheritance
+// Diamond problem resolution
+
+class A{
+public:
+	void printA(){
+		cout << "Inside the printA function" << endl;
+	}
+	void overLoadedMethod(){
+		cout << "This is the method without any parameters" << endl;
+	}
+	void overLoadedMethod(int i){
+		cout << "This is the overloaded method with one parameter. its value is : " << i << endl;
+	}
+
+	void overLoadedMethod(int i, string str){
+		cout << "This is the overloaded method with two parameters: " << i << " " << str << endl;
+	}
+};
+
+class B : public virtual A{
+public:
+	void print(){
+		cout << "In the virtual method implementation of method print. (inside A)" << endl;
+	}
+};
+
+class C: private virtual A{
+public:
+	void print(){
+		cout << "Inside virtual method implementation of method print. (inside B)" << endl;
+	}
+};
+
+class D : public C, public B{
+public:
+	D(){
+		printA();
+	}
+};
+
+int main(){
+	A *a = new B();
+	B *b = new D();
+
+	cout << "Calling the overloaded method of A" << endl;
+	cout << "#####################################################" << endl;
+	a->overLoadedMethod();
+	a->overLoadedMethod(10);
+	a->overLoadedMethod(20, "Hello World");
+	cout << "#####################################################" << endl;
+	return 0;
+}
